@@ -1,0 +1,11 @@
+﻿  Building GameAssembly.dll with MsvcWinRtToolChain
+  	Msvc Install Version: 17.0
+  	Msvc Install SDK Directory: D:\Program Files\Windows SDK
+  	Msvc Linker Path: C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.32.31326\bin\HostX64\ARM64\link.exe
+  	Msvc Compiler Path: C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.32.31326\bin\HostX64\ARM64\cl.exe
+  
+  	Output directory: E:\UnityProjects\TestHoloLens\New folder\build\bin\ARM64\Master
+  	Cache directory: E:\UnityProjects\TestHoloLens\New folder\build\obj\il2cppOutputProject\ARM64\Master
+  ObjectFiles: 744 of which compiled: 0
+  Total compilation time: 657 milliseconds.
+  Cleaned up 2 object files.

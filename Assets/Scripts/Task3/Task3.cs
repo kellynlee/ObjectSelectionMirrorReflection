@@ -8,6 +8,8 @@ public class Task3 : MonoBehaviour
 {
     // Start is called before the first frame update
     public GameObject Line;
+    public static TaskProperties propertiesClass;
+
     void Start()
     {
         MenuSelection.propertiesClass.Modality = false;
@@ -45,7 +47,8 @@ public class Task3 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(MenuSelection.propertiesClass.Perspective);
+        // MenuSelection.propertiesClass.Perspective = true;
+        Debug.Log(MenuSelection.propertiesClass.TaskNumber);
         if (MenuSelection.propertiesClass.Visibility)
         {
             //double

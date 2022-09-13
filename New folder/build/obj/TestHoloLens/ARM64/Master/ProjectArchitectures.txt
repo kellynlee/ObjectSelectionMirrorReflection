@@ -1,0 +1,1 @@
+E:\UnityProjects\TestHoloLens\New folder\TestHoloLens\TestHoloLens.vcxproj;arm64

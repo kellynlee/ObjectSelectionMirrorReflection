@@ -12,7 +12,9 @@ public class MenuSelection : MonoBehaviour
  
     void Start()
     {
+
         propertiesClass = new TaskProperties();
+        Debug.Log(propertiesClass);
         this.TaskInformation = GameObject.Find("Information").GetComponent<TextMeshPro>();
 
     }
@@ -28,9 +30,11 @@ public class MenuSelection : MonoBehaviour
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
+
        propertiesClass = new TaskProperties();
+        Debug.Log(propertiesClass);
+
         this.TaskInformation = GameObject.Find("Information").GetComponent<TextMeshPro>();
-        
     }
     public void TaskT1_1() {
         Debug.Log("Task1: 1pp/manual/single");

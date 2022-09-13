@@ -21,7 +21,7 @@ public class Task2 : MonoBehaviour
         for (var i = 0; i < 100; i++)
         {
             // Vector3 radomPosition = new Vector3(Random.Range(-2.5f,2.5f),Random.Range(-1f,1.5f),Random.Range(-1F,1f));
-            Vector3 radomPosition = new Vector3(Random.Range(-2.5f, 2.5f), Random.Range(-1f, 1.5f), Random.Range(mirrorPos.z - 0.3f, mirrorPos.z - 1f));
+            Vector3 radomPosition = new Vector3(Random.Range(-1.7f, 1.7f), Random.Range(-1f, 1.5f), Random.Range(mirrorPos.z - 0.2f, mirrorPos.z - 1.3f));
 
             GameObject tile = Instantiate(prefab[Random.Range(0, prefab.Length)], radomPosition, Quaternion.identity) as GameObject;
             tile.layer = LayerMask.NameToLayer("Real");
@@ -50,7 +50,7 @@ public class Task2 : MonoBehaviour
         for (var i = 0; i < 100; i++)
         {
             // Vector3 radomPosition = new Vector3(Random.Range(-2.5f,2.5f),Random.Range(-1f,1.5f),Random.Range(-1F,1f));
-            Vector3 radomPosition = new Vector3(Random.Range(-2.5f, 2.5f), Random.Range(-1f, 1.5f), Random.Range(mirrorPos.z - 0.3f, mirrorPos.z - 1f));
+            Vector3 radomPosition = new Vector3(Random.Range(-1.7f, 1.7f), Random.Range(-1f, 1.5f), Random.Range(mirrorPos.z - 0.2f, mirrorPos.z - 1.3f));
 
             GameObject tile = Instantiate(prefab[Random.Range(0, prefab.Length)], radomPosition, Quaternion.identity) as GameObject;
             tile.layer = LayerMask.NameToLayer("Real");
@@ -64,7 +64,7 @@ public class Task2 : MonoBehaviour
         var mirrorPos = GameObject.Find("VirtualMirror").transform.position;
         for (var i = 0; i < 100; i++)
         {
-            Vector3 radomPosition = new Vector3(Random.Range(-2.5f, 2.5f), Random.Range(-1f, 1.5f), Random.Range(mirrorPos.z - 0.3f, mirrorPos.z - 1f));
+            Vector3 radomPosition = new Vector3(Random.Range(-1.7f, 1.7f), Random.Range(-1f, 1.5f), Random.Range(mirrorPos.z - 0.2f, mirrorPos.z - 1.3f));
             this.transform.GetChild(0).GetChild(i).gameObject.SetActive(true);
             this.transform.GetChild(0).GetChild(i).transform.position = radomPosition;
             this.transform.GetChild(0).GetChild(i).gameObject.GetComponent<MeshRenderer>().material.SetColor("_Color", Color.red);
