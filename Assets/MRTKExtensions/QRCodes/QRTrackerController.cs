@@ -19,8 +19,6 @@ namespace MRTKExtensions.QRCodes
         [SerializeField]
         private GameObject Mirror;
 
-        [SerializeField]
-        private GameObject Task1;
 
         [SerializeField]
         private GameObject Scan;
@@ -118,14 +116,8 @@ namespace MRTKExtensions.QRCodes
             // information.text = "setting mirror position" + pose.position.ToString() + pose.rotation.ToString();
             audio.Play();
             Mirror.SetActive(true);
-            pose.rotation *= Quaternion.Euler(90, 0, 0);
+            // pose.rotation *= Quaternion.Euler(90, 0, 0);
             Mirror.transform.SetPositionAndRotation(pose.position, pose.rotation);
-            GameObject.Find("Task1").transform.localPosition = pose.position;
-
-            MenuSelection.propertiesClass.MirrorPosSetting = true;
-            Task1.GetComponent<Task1>().SetupObjects();
-            Scan.SetActive(false);
-            // QRCodeTrackingService.Disable();
             PositionSet?.Invoke(this, pose);
         }
 

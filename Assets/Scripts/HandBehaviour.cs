@@ -19,15 +19,17 @@ public class HandBehaviour : MonoBehaviour
     [SerializeField]
     private AudioSource audioSourceFalse;
 
+    [SerializeField]
+    private GameObject cursorPrefab;
 
-    private GameObject mirrorObj, HandRay, direction,flippedDirection, handObj, flippedHandObj;
+    private GameObject mirrorObj, HandRay, direction, flippedDirection, handObj, flippedHandObj, endCursor ;
 
     private MixedRealityPose pose;
     private int layer_mask;
 
     private int choose;
     private const float PinchThreshold = 0.7f;
-
+    private GameObject EndCursor;
 
     // Start is called before the first frame update
     void Start()
@@ -37,16 +39,19 @@ public class HandBehaviour : MonoBehaviour
         mirrorObj = GameObject.Find("VirtualMirror");
         HandRay = Instantiate(lineObj, this.transform);
         direction = new GameObject();
-        flippedDirection = new GameObject(); 
+        flippedDirection = new GameObject();
+        endCursor = Instantiate(cursorPrefab, this.transform);
+        endCursor.SetActive(false);
         //disable gaze pointer
         PointerUtils.SetGazePointerBehavior(PointerBehavior.AlwaysOff);
-        PointerUtils.SetHandRayPointerBehavior(PointerBehavior.AlwaysOff);  
+        PointerUtils.SetHandRayPointerBehavior(PointerBehavior.AlwaysOff);
     }
 
-    public void FlipAndMimic(GameObject targetObj, ref GameObject flippedObj) {
+    public void FlipAndMimic(GameObject targetObj, ref GameObject flippedObj)
+    {
         Vector3 flippedLocalPos = mirrorObj.transform.InverseTransformPoint(targetObj.transform.position);
         Vector3 updatedLocalPos = flippedLocalPos;
-        updatedLocalPos.z *= -1;
+        updatedLocalPos.y *= -1;
 
         flippedObj.transform.position = mirrorObj.transform.TransformPoint(updatedLocalPos);
 
@@ -73,25 +78,35 @@ public class HandBehaviour : MonoBehaviour
         //this.transform.rotation = this.flippedObj.transform.rotation;
     }
 
-    void DrawLine (Vector3 start, Vector3 end, int layerMask) {
+    void DrawLine(Vector3 start, Vector3 end, int layerMask)
+    {
         HandRay.transform.position = start;
         HandRay.GetComponent<LineRenderer>().SetPosition(0, start);
-        Debug.DrawRay(start, (end - start).normalized,Color.red);
-        if (Physics.Raycast(start, (end - start).normalized, out RaycastHit hit, Mathf.Infinity, layerMask)) {
+        Debug.DrawRay(start, (end - start).normalized, Color.red);
+        if (Physics.Raycast(start, (end - start).normalized, out RaycastHit hit, Mathf.Infinity, layerMask))
+        {
             Debug.Log("hit");
             HandRay.GetComponent<LineRenderer>().SetPosition(1, hit.point);
-            if(this.IsPinching(Handedness.Right)){
+            if (this.IsPinching(Handedness.Right))
+            {
                 var distance = Vector3.Distance(hit.transform.position, hit.point);
-                this.InteractionWithObject(hit.transform.gameObject, 1, distance);
+                if (MenuSelection.propertiesClass.TaskNumber == 3)
+                {
+                    this.endCursor.transform.position = hit.point;
+                    this.endCursor.SetActive(true);
+                }
+                this.InteractionWithObject(hit.transform.gameObject, MenuSelection.propertiesClass.TaskNumber, distance);
+            } else {
+                    this.endCursor.SetActive(false);
             }
-        } else {
+        }
+        else
+        {
             HandRay.GetComponent<LineRenderer>().SetPosition(1, end);
         }
 
-        HandRay.GetComponent<LineRenderer>().startColor = Color.yellow;
-        HandRay.GetComponent<LineRenderer>().endColor = Color.yellow;
-        
         HandRay.GetComponent<LineRenderer>().enabled = true;
+
     }
 
     bool IsPinching(Handedness trackedHand)
@@ -99,74 +114,105 @@ public class HandBehaviour : MonoBehaviour
         return HandPoseUtils.CalculateIndexPinch(trackedHand) > PinchThreshold;
     }
 
-    void InteractionWithObject(GameObject hitObject, int taskNumber, float distance) {
-        switch(taskNumber)
+    void InteractionWithObject(GameObject hitObject, int taskNumber, float distance)
+    {
+        Debug.Log(taskNumber);
+        Debug.Log(hitObject.transform.GetSiblingIndex());
+        switch (taskNumber)
         {
             case 1:
-            {
-                if (hitObject.tag == "T1Object") {
-                    Int32.TryParse(hitObject.name,out choose);
-                    if (Task1.CurrentChoose ==0 && Task1.NextChoose == 0) {
-                    if (choose == 1) {
-                        Task1.CurrentChoose = choose;
-                        Task1.NextChoose = choose+ 6;
-                    } else {
-                        // audioSourceFalse.Play();
-                        
+                {
+                    if (hitObject.tag == "T1Object")
+                    {
+                        Int32.TryParse(hitObject.name, out choose);
+                        if (Task1.CurrentChoose == 0 && Task1.NextChoose == 0)
+                        {
+                            if (choose == 1)
+                            {
+                                Task1.CurrentChoose = choose;
+                                Task1.NextChoose = choose + 6;
+                            }
+                            else
+                            {
+                                // audioSourceFalse.Play();
+
+                            }
+                        }
+                        else
+                        {
+                            if (choose == Task1.NextChoose)
+                            {
+                                Task1.NextChoose = Task1.CurrentChoose + 1;
+                                Task1.CurrentChoose = choose;
+                            }
+                            else
+                            {
+                                // audioSourceFalse.Play();
+                            }
+                            if (Task1.CurrentChoose == 11 && choose == 6)
+                            {
+                                Task1.CurrentChoose = choose;
+                                Task1.NextChoose = choose;
+                            }
+                        }
                     }
-                } else {
-                    if (choose == Task1.NextChoose) {
-                        Task1.NextChoose = Task1.CurrentChoose+1;
-                        Task1.CurrentChoose = choose; 
-                    } else {
-                        // audioSourceFalse.Play();
-                    }
-                    if (Task1.CurrentChoose == 11 && choose == 6) {
-                        Task1.CurrentChoose = choose;
-                        Task1.NextChoose = choose;
-                    }
+                    break;
                 }
-                }
-                break;
-            }
             case 2:
-            {
-                break;
-            }
+                {
+                    if (hitObject.tag == "T2Object")
+                    {
+                        if (hitObject.transform.GetSiblingIndex() == Task2.targetNum)
+                        {
+                            Debug.Log("right");
+                            hitObject.GetComponent<MeshRenderer>().material.SetColor("_Color", Color.red);
+                            Task2.targetNum = -1;
+                        }
+                    }
+                    break;
+                }
             case 3:
-            {
-                break;
-            }
+                {
+
+                    break;
+                }
         }
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(MenuSelection.propertiesClass.Perspective) {
+        if (MenuSelection.propertiesClass.Perspective)
+        {
             //1pp
             this.layer_mask = LayerMask.GetMask("Real");
-        } else {
+        }
+        else
+        {
             //2pp
             this.layer_mask = LayerMask.GetMask("Mirror");
         }
         this.handObj.GetComponent<Renderer>().enabled = false;
         this.HandRay.GetComponent<LineRenderer>().enabled = false;
-        if(HandJointUtils.TryGetJointPose(TrackedHandJoint.IndexTip, Handedness.Right, out pose)) {
+        if (HandJointUtils.TryGetJointPose(TrackedHandJoint.IndexTip, Handedness.Right, out pose))
+        {
             this.handObj.transform.position = pose.Position;
             this.handObj.GetComponent<Renderer>().enabled = true;
-            this.FlipAndMimic(handObj,ref flippedHandObj);
+            this.FlipAndMimic(handObj, ref flippedHandObj);
             this.flippedHandObj.GetComponent<Renderer>().enabled = true;
-            if (MenuSelection.propertiesClass.Modality) {
+            if (MenuSelection.propertiesClass.Modality)
+            {
                 //manual
-                this.HandRay.GetComponent<LineRenderer>().enabled = false; 
-            } else {
+                this.HandRay.GetComponent<LineRenderer>().enabled = false;
+            }
+            else
+            {
                 //remote
                 // inspired from https://stackoverflow.com/questions/56067810/how-do-i-get-the-position-of-an-active-mrtk-pointer
-                foreach(var source in MixedRealityToolkit.InputSystem.DetectedInputSources)
+                foreach (var source in MixedRealityToolkit.InputSystem.DetectedInputSources)
                 {
                     // Ignore anything that is not a hand because we want articulated hands
-                if (source.SourceType == Microsoft.MixedReality.Toolkit.Input.InputSourceType.Hand)
+                    if (source.SourceType == Microsoft.MixedReality.Toolkit.Input.InputSourceType.Hand)
                     {
                         foreach (var p in source.Pointers)
                         {
@@ -174,17 +220,22 @@ public class HandBehaviour : MonoBehaviour
                             {
                                 continue;
                             }
-                            if ((p is ShellHandRayPointer) || ( p is LinePointer) ) {
+                            if ((p is ShellHandRayPointer) || (p is LinePointer))
+                            {
                                 var startPoint = p.Position;
                                 var endPoint = startPoint + p.Rotation * Vector3.forward * 10;
                                 this.direction.transform.position = endPoint;
                                 this.FlipAndMimic(direction, ref flippedDirection);
-                                if(MenuSelection.propertiesClass.Perspective) {
+                                Debug.Log(MenuSelection.propertiesClass.Perspective);
+                                if (MenuSelection.propertiesClass.Perspective)
+                                {
                                     //1pp
-                                    this.DrawLine(startPoint, endPoint, layer_mask);
-                                } else {
+                                    this.DrawLine(startPoint, endPoint, this.layer_mask);
+                                }
+                                else
+                                {
                                     //2pp
-                                    this.DrawLine(flippedHandObj.transform.position, flippedDirection.transform.position, layer_mask);
+                                    this.DrawLine(flippedHandObj.transform.position, flippedDirection.transform.position, this.layer_mask);
                                 }
                             }
                         }
@@ -192,5 +243,5 @@ public class HandBehaviour : MonoBehaviour
                 }
             }
         }
-    } 
+    }
 }

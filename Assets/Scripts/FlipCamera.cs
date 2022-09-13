@@ -1,27 +1,25 @@
-using System;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
-using UnityEditor;
 
-public class ObjectFlip : MonoBehaviour
+public class FlipCamera : MonoBehaviour
 {
     // Start is called before the first frame update
-    public GameObject flippedObj;
-    
-    [SerializeField]
-    private bool isLine;
-
-    private GameObject mirrorObj;
+    public GameObject MainCamera;
+    GameObject mirrorObj;
     void Start()
     {
         this.mirrorObj = GameObject.Find("VirtualMirror");
     }
 
-    void FlipAndMimic() {
-        Vector3 flippedLocalPos = this.mirrorObj.transform.InverseTransformPoint(this.transform.position);
+    // Update is called once per frame
+    void Update()
+    {
+        Vector3 flippedLocalPos = this.mirrorObj.transform.InverseTransformPoint(MainCamera.transform.position);
         Vector3 updatedLocalPos = flippedLocalPos;
         updatedLocalPos.y *= -1;
 
-        this.flippedObj.transform.position = this.mirrorObj.transform.TransformPoint(updatedLocalPos);
+        this.transform.position = this.mirrorObj.transform.TransformPoint(updatedLocalPos);
 
         //mimic rotation
         // inspired from:
@@ -34,24 +32,15 @@ public class ObjectFlip : MonoBehaviour
 
         //this.transform.rotation = mirrorQuat * flippedGlobalRot * new Quaternion(-mirrorQuat.x, -mirrorQuat.y, -mirrorQuat.z, mirrorQuat.w);
 
-        Vector3 forward = this.isLine? -this.transform.forward:this.transform.forward;
-        Vector3 upward = this.transform.up;
-
+        Vector3 forward = MainCamera.transform.forward;
+        Vector3 upward = MainCamera.transform.up;
         Vector3 mirroredFor = Vector3.Reflect(forward, mirrorNormal);
         Vector3 mirroredUp = Vector3.Reflect(upward, mirrorNormal);
         //setting flipped object's position and render
-        this.flippedObj.transform.rotation = Quaternion.LookRotation(mirroredFor, mirroredUp);
+        this.transform.rotation = Quaternion.LookRotation(mirroredFor, mirroredUp);
         //Vector3 rot = this.flippedObj.transform.rotation.eulerAngles;
         //rot = new Vector3(rot.x, rot.y *-1, -1* rot.z);
         //this.transform.rotation = Quaternion.Euler(rot);
         //this.transform.rotation = this.flippedObj.transform.rotation;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        if (this.transform.gameObject.activeSelf) {
-            this.FlipAndMimic();
-        }
     }
 }

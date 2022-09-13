@@ -1,5 +1,5 @@
 using System;
-public class TaskProperties {
+public class Task2Properties {
     private Boolean mirrorPosSetting;
     //Perspective property, true for 1pp, false for 2pp
     private Boolean perspective;
@@ -13,19 +13,13 @@ public class TaskProperties {
 
     public Boolean Perspective {
         get {
-            return perspective;
-        }
-        set {
-            perspective = value;
+            return true;
         }
     }
 
     public Boolean Modality {
         get {
-            return modality;
-        }
-        set {
-            modality = value;
+            return false;
         }
     }
 

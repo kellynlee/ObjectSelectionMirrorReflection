@@ -2,10 +2,12 @@ using System;
 using UnityEngine;
 using System.Collections;
 using TMPro;
-
+using UnityEngine.SceneManagement;
+using UnitySceneManager = UnityEngine.SceneManagement.SceneManager;
 public class MenuSelection : MonoBehaviour 
 {
     public static TaskProperties propertiesClass;
+
     private TextMeshPro TaskInformation;
  
     void Start()
@@ -13,6 +15,22 @@ public class MenuSelection : MonoBehaviour
         propertiesClass = new TaskProperties();
         this.TaskInformation = GameObject.Find("Information").GetComponent<TextMeshPro>();
 
+    }
+    void OnEnable()
+    {
+        UnitySceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    void OnDisable()
+    {
+        UnitySceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+       propertiesClass = new TaskProperties();
+        this.TaskInformation = GameObject.Find("Information").GetComponent<TextMeshPro>();
+        
     }
     public void TaskT1_1() {
         Debug.Log("Task1: 1pp/manual/single");
@@ -83,11 +101,54 @@ public class MenuSelection : MonoBehaviour
         propertiesClass.Visibility = true;
     }
 
+    public void SetTask1Position () {
+        MenuSelection.propertiesClass.TaskNumber = 1;
+        GameObject.Find("Task1").GetComponent<Task1>().SetupObjects();
+        this.TaskInformation.text = "Task1 Ready";
+        GameObject.Find("SetPosition").SetActive(false);
+    }
+
+
+public void TaskT2_1() {
+        Debug.Log("Task2.A: With Reflection");
+        this.TaskInformation.text = "Task2.A: With Reflection";
+        // Task1.CurrentChoose = 0;
+        Task2.targetNum = UnityEngine.Random.Range(0,20);
+        Debug.Log(Task2.targetNum);
+        propertiesClass.Visibility = true;
+    }
+    public void TaskT2_2() {
+        Debug.Log("Task2.A: Without Reflection");
+        this.TaskInformation.text = "Task2.A: Without Reflection";
+        Task2.targetNum = UnityEngine.Random.Range(0,20);
+        Debug.Log(Task2.targetNum);
+
+        propertiesClass.Visibility = false;
+    }
+
+    public void TaskT3_1() {
+        Debug.Log("Task3.A: With Reflection");
+        this.TaskInformation.text = "Task3.A: With Reflection";
+
+        propertiesClass.Visibility = true;
+    }
+
+    public void TaskT3_2() {
+        Debug.Log("Task3.B: Without Reflection");
+        this.TaskInformation.text ="Task3.B: Without Reflection";
+
+        propertiesClass.Visibility = false;
+    }
     public void ResetTask1() {
         Debug.Log("restart the scence");
         Task1.CurrentChoose = 0;
         Task1.NextChoose = 0;
-         GameObject.Find("Task1").GetComponent<Task1>().ActiveObjects();
+        GameObject.Find("Task1").GetComponent<Task1>().ActiveObjects();
+    }
+
+    public void ResetTask2Postition () {
+        Debug.Log("Reset Position");
+        GameObject.Find("Task2").GetComponent<Task2>().ResetObjectPosition();
     }
 
 }

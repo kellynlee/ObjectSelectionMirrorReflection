@@ -2,12 +2,14 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnitySceneManager = UnityEngine.SceneManagement.SceneManager;
 
 public class Task1 : MonoBehaviour
 {
     // Start is called before the first frame update
 
-    public GameObject MirrorObject;
+    // public GameObject MirrorObject;
     public static int CurrentChoose = 0;
     public static int NextChoose = 0;
 
@@ -15,26 +17,27 @@ public class Task1 : MonoBehaviour
     private Boolean isSingle;
 
     private float raduis = 0.3f;
-    void Start()
-    {        
-
-    }
 
     public void SetupObjects () {
-        if (MenuSelection.propertiesClass.MirrorPosSetting) {
-            for (int i = 0; i < 11; i++) {
-                float angle = i * Mathf.PI *2f / 11;
-                Vector3 mirrorPos = MirrorObject.transform.position;
-                this.transform.SetPositionAndRotation(MirrorObject.transform.position,MirrorObject.transform.rotation);   
-                Vector3 sepherePos = new Vector3(Mathf.Sin(angle)*raduis, Mathf.Cos(angle) * raduis, -1f);
-                // this.transform.GetChild(0).GetChild(i).gameObject.SetActive(true);
-                this.transform.GetChild(0).GetChild(i).transform.position += sepherePos;
-                // GameObject flip = new GameObject();
-                // this.FlipAndMimic(this.transform.GetChild(0).GetChild(i).gameObject, ref flip);
-                // this.transform.GetChild(1).GetChild(i).transform.position += flip.transform.position;
-            }
+        this.transform.localPosition = GameObject.Find("VirtualMirror").transform.position;
+        MenuSelection.propertiesClass.MirrorPosSetting = true;
+         for (int i = 0; i < 11; i++) {
+            float angle = i * Mathf.PI *2f / 11;
+            Vector3 mirrorPos = GameObject.Find("VirtualMirror").transform.position;
+            Vector3 sepherePos = new Vector3(Mathf.Sin(angle)*0.3f, Mathf.Cos(angle) * 0.3f, -0.8f);
+            this.transform.GetChild(0).GetChild(i).transform.position += sepherePos;
+            this.transform.GetChild(0).GetChild(i).gameObject.SetActive(false);
         }
     }
+
+
+    void Start()
+    {        
+        MenuSelection.propertiesClass.TaskNumber = 1;
+        MenuSelection.propertiesClass.MirrorPosSetting = true;
+    }
+
+    
     public void ActiveObjects() {
         Debug.Log("initialize");
         CurrentChoose = 0;
