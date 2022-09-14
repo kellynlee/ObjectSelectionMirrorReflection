@@ -40,7 +40,7 @@ public class InstantiateFlippedObject : MonoBehaviour
 
         Vector3 forward = this.transform.forward;
         Vector3 upward = this.transform.up;
-        Vector3 mirroredFor = Vector3.Reflect(forward, mirrorNormal);
+        Vector3 mirroredFor = Vector3.Reflect(-forward, mirrorNormal);
         Vector3 mirroredUp = Vector3.Reflect(upward, mirrorNormal);
         //setting flipped object's position and render
         this.flippedObj.transform.rotation = Quaternion.LookRotation(mirroredFor, mirroredUp);

@@ -1,18 +1,3 @@
-%YAML 1.1
-%TAG !u! tag:unity3d.com,2011:
---- !u!114 &11400000
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1c5444f828898a74fa2c69b4ffe78152, type: 3}
-  m_Name: DefaultQRCodeTrackingServiceProfile
-  m_EditorClassIdentifier: 
-  isCustomProfile: 1
-  accessRetryTime: 5000
-  exposedProgressMessages: 1
-  debugMessages: 10
+version https://git-lfs.github.com/spec/v1
+oid sha256:222fa5b9ac4d77372c2107a840cfc51bd422419a6ce079c4a0e5ea0e961a7c55
+size 536

@@ -1,17 +1,3 @@
-%YAML 1.1
-%TAG !u! tag:unity3d.com,2011:
---- !u!114 &11400000
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3193d07953d1c3e44ad7ad26908fe6b2, type: 3}
-  m_Name: EyeTrackingDemoExperienceSettingsProfile
-  m_EditorClassIdentifier: 
-  isCustomProfile: 1
-  targetExperienceScale: 3
-  contentOffset: 0
+version https://git-lfs.github.com/spec/v1
+oid sha256:68b7a35a8b408e54a547586b3c4f534dfc9665b9734c09c3bc11002655fd7c99
+size 513

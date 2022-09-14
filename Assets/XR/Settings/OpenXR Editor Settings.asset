@@ -1,20 +1,3 @@
-%YAML 1.1
-%TAG !u! tag:unity3d.com,2011:
---- !u!114 &11400000
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 975057b4fdcfb8142b3080d19a5cc712, type: 3}
-  m_Name: OpenXR Editor Settings
-  m_EditorClassIdentifier: 
-  Keys: 010000000e000000
-  Values:
-  - featureSets:
-    - com.microsoft.openxr.featureset.wmr
-  - featureSets:
-    - com.microsoft.openxr.featureset.hololens
+version https://git-lfs.github.com/spec/v1
+oid sha256:9422796513c8b6b1e9b30d35a00db8b8aff008f7050fa04710a4d272b4a90fa0
+size 589

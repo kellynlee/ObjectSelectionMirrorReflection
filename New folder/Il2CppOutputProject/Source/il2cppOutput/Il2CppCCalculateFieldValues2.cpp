@@ -32324,6 +32324,23 @@ public:
 	}
 };
 
+struct Task3_t278F1D27AA0C8B2B3491514216D15B174F1F3B48_StaticFields
+{
+public:
+	// TaskProperties Task3::propertiesClass
+	TaskProperties_tF4FF5925A989B872A891E4FFB3BE3E19FC801ABE * ___propertiesClass_5;
+
+public:
+	inline static int32_t get_offset_of_propertiesClass_5() { return static_cast<int32_t>(offsetof(Task3_t278F1D27AA0C8B2B3491514216D15B174F1F3B48_StaticFields, ___propertiesClass_5)); }
+	inline TaskProperties_tF4FF5925A989B872A891E4FFB3BE3E19FC801ABE * get_propertiesClass_5() const { return ___propertiesClass_5; }
+	inline TaskProperties_tF4FF5925A989B872A891E4FFB3BE3E19FC801ABE ** get_address_of_propertiesClass_5() { return &___propertiesClass_5; }
+	inline void set_propertiesClass_5(TaskProperties_tF4FF5925A989B872A891E4FFB3BE3E19FC801ABE * value)
+	{
+		___propertiesClass_5 = value;
+		Il2CppCodeGenWriteBarrier((void**)(&___propertiesClass_5), (void*)value);
+	}
+};
+
 
 // Microsoft.MixedReality.Toolkit.Examples.Demos.EyeTracking.ToggleGameObject
 struct ToggleGameObject_t4C3211F75C9E54F35253F9D18E4AB5924A8A5664  : public MonoBehaviour_t37A501200D970A8257124B0EAE00A0FF3DDC354A
@@ -38458,9 +38475,10 @@ IL2CPP_EXTERN_C const int32_t g_FieldOffsetTable6295[4] =
 	DrawLine_t7306F42FCBCFC616EB6BF99A7820AEB4568FA77B::get_offset_of_layerOrder_6(),
 	DrawLine_t7306F42FCBCFC616EB6BF99A7820AEB4568FA77B_StaticFields::get_offset_of_SEGMENT_COUNT_7(),
 };
-IL2CPP_EXTERN_C const int32_t g_FieldOffsetTable6296[1] = 
+IL2CPP_EXTERN_C const int32_t g_FieldOffsetTable6296[2] = 
 {
 	Task3_t278F1D27AA0C8B2B3491514216D15B174F1F3B48::get_offset_of_Line_4(),
+	Task3_t278F1D27AA0C8B2B3491514216D15B174F1F3B48_StaticFields::get_offset_of_propertiesClass_5(),
 };
 IL2CPP_EXTERN_C const int32_t g_FieldOffsetTable6297[2] = 
 {

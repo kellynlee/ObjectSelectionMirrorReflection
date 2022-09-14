@@ -18,7 +18,7 @@ public class Task3 : MonoBehaviour
         MenuSelection.propertiesClass.TaskNumber = 3;
         this.transform.localPosition = GameObject.Find("VirtualMirror").transform.position;
         var mirrorPos = GameObject.Find("VirtualMirror").transform.position;
-        this.transform.GetChild(0).transform.position = new Vector3(0,0,mirrorPos.z - 0.5f);
+        this.transform.GetChild(0).transform.position = new Vector3(-0.3f,0.3f,mirrorPos.z - 0.5f);
         // this.DrawSineWave(new Vector3(0f,0f,0f), 1f,2f);
     }
 
@@ -40,7 +40,7 @@ public class Task3 : MonoBehaviour
         MenuSelection.propertiesClass.TaskNumber = 3;
         this.transform.localPosition = GameObject.Find("VirtualMirror").transform.position;
         var mirrorPos = GameObject.Find("VirtualMirror").transform.position;
-        this.transform.GetChild(0).transform.position = new Vector3(0,0,mirrorPos.z - 0.5f);
+        this.transform.GetChild(0).transform.position = new Vector3(-0.3f,0.3f,mirrorPos.z - 0.5f);
         
     }
 

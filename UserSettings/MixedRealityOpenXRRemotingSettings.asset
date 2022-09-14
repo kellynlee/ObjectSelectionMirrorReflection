@@ -1,7 +1,3 @@
-{
-    "<RemoteHostName>k__BackingField": "192.168.137.224",
-    "<RemoteHostPort>k__BackingField": 8265,
-    "<MaxBitrate>k__BackingField": 20000,
-    "<VideoCodec>k__BackingField": 0,
-    "<EnableAudio>k__BackingField": false
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:ab039aa93fad1656f4617776d343aa56d9d73cbe9f44e038b38e2254e04d44dd
+size 228
