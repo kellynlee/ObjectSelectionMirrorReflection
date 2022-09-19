@@ -584,7 +584,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &297020679
 PrefabInstance:
@@ -2037,7 +2037,7 @@ MonoBehaviour:
   cameraImagePlane: {fileID: 983950995}
   estimateViewFrustum: 1
   setNearClipPlane: 1
-  nearClipPlaneOffset: -0.01
+  nearClipPlaneOffset: -0.0001
   plane: 0
 --- !u!20 &841372178
 Camera:
@@ -2062,7 +2062,7 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 1.9979999
+  near clip plane: 2.0079
   far clip plane: 1000
   field of view: 60
   orthographic: 0
@@ -2224,7 +2224,7 @@ Transform:
   - {fileID: 1860020370}
   - {fileID: 1302773981}
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &983950995
 GameObject:
@@ -3412,7 +3412,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1782007842
 GameObject:
@@ -3984,7 +3984,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 14
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1949903730
 GameObject:
@@ -4062,7 +4062,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1968391640
 GameObject:

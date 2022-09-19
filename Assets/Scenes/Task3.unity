@@ -1354,7 +1354,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1611115011089838064, guid: 8a5f44fa75dd71547bd29e2b5877a9af, type: 3}
       propertyPath: m_Text
-      value: Task2
+      value: Task1
       objectReference: {fileID: 0}
     - target: {fileID: 1611115012272731582, guid: 8a5f44fa75dd71547bd29e2b5877a9af, type: 3}
       propertyPath: m_Text
@@ -1386,7 +1386,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1630414436260072694, guid: 8a5f44fa75dd71547bd29e2b5877a9af, type: 3}
       propertyPath: OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: LoadTask2
+      value: LoadTask1
       objectReference: {fileID: 0}
     - target: {fileID: 1630414436260072694, guid: 8a5f44fa75dd71547bd29e2b5877a9af, type: 3}
       propertyPath: OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
