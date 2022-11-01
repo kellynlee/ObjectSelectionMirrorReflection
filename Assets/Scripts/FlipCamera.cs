@@ -10,11 +10,6 @@ public class FlipCamera : MonoBehaviour
     void Start()
     {
         this.mirrorObj = GameObject.Find("VirtualMirror");
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
         Vector3 flippedLocalPos = this.mirrorObj.transform.InverseTransformPoint(MainCamera.transform.position);
         Vector3 updatedLocalPos = flippedLocalPos;
         updatedLocalPos.y *= -1;

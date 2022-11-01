@@ -117,7 +117,8 @@ namespace MRTKExtensions.QRCodes
             audio.Play();
             Mirror.SetActive(true);
             // pose.rotation *= Quaternion.Euler(90, 0, 0);
-            Mirror.transform.SetPositionAndRotation(pose.position, pose.rotation);
+            Vector3 position = new Vector3(pose.position.x,pose.position.y, pose.position.z); 
+            Mirror.transform.SetPositionAndRotation(position, pose.rotation);
             PositionSet?.Invoke(this, pose);
         }
 

@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 7749550556930385800}
   - component: {fileID: 831612063399083332}
   - component: {fileID: 5301474934667151744}
-  - component: {fileID: -8357635471903988044}
-  - component: {fileID: 179366004786847672}
+  - component: {fileID: -1075965483988680254}
+  - component: {fileID: -2091820634118792762}
   - component: {fileID: 1912658977734724090}
   m_Layer: 0
   m_Name: T1Sephere
@@ -30,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 1141332922664414936}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.1, y: 0.1, z: 0}
+  m_LocalScale: {x: 0.032, y: 0.032, z: 0.032}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -84,7 +84,7 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!54 &-8357635471903988044
+--- !u!54 &-1075965483988680254
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -100,7 +100,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!135 &179366004786847672
+--- !u!135 &-2091820634118792762
 SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

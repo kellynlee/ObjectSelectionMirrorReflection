@@ -8,7 +8,14 @@ public class Task3 : MonoBehaviour
 {
     // Start is called before the first frame update
     public GameObject Line;
-    public static TaskProperties propertiesClass;
+    public static bool isDrawStart;
+
+    public static string RenderTime;
+
+    public static int Repetition = 0;
+    public static bool isManual;
+
+    public static bool isTouched;
 
     void Start()
     {
@@ -18,7 +25,9 @@ public class Task3 : MonoBehaviour
         MenuSelection.propertiesClass.TaskNumber = 3;
         this.transform.localPosition = GameObject.Find("VirtualMirror").transform.position;
         var mirrorPos = GameObject.Find("VirtualMirror").transform.position;
-        this.transform.GetChild(0).transform.position = new Vector3(-0.3f,0.3f,mirrorPos.z - 0.5f);
+        isManual = false;
+
+        this.transform.GetChild(0).transform.position = new Vector3(0f, -0.05f, mirrorPos.z - 0.9f);
         // this.DrawSineWave(new Vector3(0f,0f,0f), 1f,2f);
     }
 
@@ -34,34 +43,56 @@ public class Task3 : MonoBehaviour
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-       MenuSelection.propertiesClass.Modality = false;
+        MenuSelection.propertiesClass.Modality = false;
         MenuSelection.propertiesClass.Perspective = true;
         MenuSelection.propertiesClass.Visibility = true;
         MenuSelection.propertiesClass.TaskNumber = 3;
+        Repetition = 0;
         this.transform.localPosition = GameObject.Find("VirtualMirror").transform.position;
         var mirrorPos = GameObject.Find("VirtualMirror").transform.position;
-        this.transform.GetChild(0).transform.position = new Vector3(-0.3f,0.3f,mirrorPos.z - 0.5f);
-        
+        isManual = false;
+        this.transform.GetChild(0).transform.position = new Vector3(0f, -0.05f, mirrorPos.z - 0.9f);
     }
 
     // Update is called once per frame
     void Update()
     {
-        // MenuSelection.propertiesClass.Perspective = true;
-        Debug.Log(MenuSelection.propertiesClass.TaskNumber);
-        if (MenuSelection.propertiesClass.Visibility)
+        if (Repetition >= 3)
         {
-            //double
-            this.transform.GetChild(0).gameObject.SetActive(true);
-            this.transform.GetChild(1).gameObject.SetActive(true);
+            if (MenuSelection.propertiesClass.Perspective == true && MenuSelection.propertiesClass.Modality == true)
+            {
+                Repetition = 0;
+                if (GameObject.Find("T3_2") != null)
+                {
+                    Destroy(GameObject.Find("T3_2"));
+                }
+            }
+            else if (MenuSelection.propertiesClass.Perspective == true && MenuSelection.propertiesClass.Modality == false)
+            {
+                Repetition = 0;
+                if (GameObject.Find("T3_1") != null)
+                {
+                    Destroy(GameObject.Find("T3_1"));
+                }
+            }
+            else if (MenuSelection.propertiesClass.Perspective == false && MenuSelection.propertiesClass.Modality == true)
+            {
+                Repetition = 0;
+                if (GameObject.Find("T3_4") != null)
+                {
+                    Destroy(GameObject.Find("T3_4"));
+                }
+            }
+            else if (MenuSelection.propertiesClass.Perspective == false && MenuSelection.propertiesClass.Modality == false)
+            {
+                Repetition = 0;
+                if (GameObject.Find("T3_3") != null)
+                {
+                    Destroy(GameObject.Find("T3_3"));
+                }
+            }
         }
-        else
-        {
-            //1pp
-            this.transform.GetChild(0).gameObject.SetActive(true);
-            this.transform.GetChild(1).gameObject.SetActive(false);
 
-        }
 
     }
 }

@@ -16,7 +16,7 @@ public class ObjectFlip : MonoBehaviour
         this.mirrorObj = GameObject.Find("VirtualMirror");
     }
 
-    void FlipAndMimic() {
+    public void FlipAndMimic() {
         Vector3 flippedLocalPos = this.mirrorObj.transform.InverseTransformPoint(this.transform.position);
         Vector3 updatedLocalPos = flippedLocalPos;
         updatedLocalPos.y *= -1;
@@ -50,8 +50,6 @@ public class ObjectFlip : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (this.transform.gameObject.activeSelf) {
-            this.FlipAndMimic();
-        }
+        this.FlipAndMimic();
     }
 }

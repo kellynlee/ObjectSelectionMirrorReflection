@@ -14,9 +14,9 @@ public class SetTargetColor : MonoBehaviour
     {
         // if (int index = transform.GetSiblingIndex();)
         if(Task2.targetNum == this.transform.GetSiblingIndex()) {
-            this.GetComponent<MeshRenderer>().material.SetColor("_Color", Color.white);
+            this.GetComponent<MeshRenderer>().material.SetColor("_Color", Color.green);
         } else {
-            this.GetComponent<MeshRenderer>().material.SetColor("_Color", Color.red);
+            this.GetComponent<MeshRenderer>().material.SetColor("_Color", Color.white);
         }
     }
 }

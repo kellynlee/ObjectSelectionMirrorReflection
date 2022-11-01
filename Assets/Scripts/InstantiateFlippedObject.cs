@@ -12,6 +12,10 @@ public class InstantiateFlippedObject : MonoBehaviour
 
     private Camera camera;
 
+    public bool isInside;
+
+    private bool isInit;
+
     void Start()
     {
         this.mirrorObj = GameObject.Find("VirtualMirror");
@@ -66,8 +70,12 @@ public class InstantiateFlippedObject : MonoBehaviour
         if (this.transform.gameObject.activeSelf) {
             this.FlipAndMimic();
             if (this.checkFOV(this.camera, this.flippedObj)) {
+                if (!isInit) {
+                    isInit = true;
+                    isInside = true;
+                    // Debug.Log("inside" + this.gameObject.name);
+                }
                 this.flippedObj.SetActive(true);
-                Debug.Log("in");
             } else {
                 this.flippedObj.SetActive(false);
             }

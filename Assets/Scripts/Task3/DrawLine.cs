@@ -8,13 +8,15 @@ public class DrawLine : MonoBehaviour
     private int curveCount = 0;    
     private int layerOrder = 0;
 
+    public Vector3 endPosition;
+
     private static int SEGMENT_COUNT = 50;
     void Start()
     {
-        lineRenderer  = this.GetComponent<LineRenderer>();
+        this.lineRenderer  = this.GetComponent<LineRenderer>();
         Vector3[] points = new Vector3[lineRenderer.positionCount];
-        lineRenderer.GetPositions(points);
-        curveCount = (int)points.Length / 2;
+        this.lineRenderer.GetPositions(points);
+        this.curveCount = (int)points.Length / 2;
         this.DrawCurve(points);
         // this.DrawSineWave(this.transform.localPosition,1,1);
     }
@@ -27,13 +29,15 @@ public class DrawLine : MonoBehaviour
             {
                 float t = i / (float)SEGMENT_COUNT;
                 int nodeIndex = j * 2;
-                Vector3 pixel = CalculateCubicBezierPoint(t, points[nodeIndex], points[nodeIndex + 1], points[nodeIndex + 2]);
-                lineRenderer.positionCount = (((j * SEGMENT_COUNT) + i));
-                Debug.Log(pixel);
-                lineRenderer.SetPosition((j * SEGMENT_COUNT) + (i - 1), pixel);
+                Vector3 pixel = this.CalculateCubicBezierPoint(t, points[nodeIndex], points[nodeIndex + 1], points[nodeIndex + 2]);
+                this.lineRenderer.positionCount = (((j * SEGMENT_COUNT) + i));
+                this.lineRenderer.SetPosition((j * SEGMENT_COUNT) + (i - 1), pixel);
             }
             
         }
+        this.endPosition = this.transform.TransformPoint(this.lineRenderer.GetPosition(this.lineRenderer.positionCount - 1));
+        Debug.Log(this.lineRenderer.positionCount - 1);
+        Debug.Log(this.endPosition);
     }
         
     Vector3 CalculateCubicBezierPoint(float t, Vector3 p0, Vector3 p1, Vector3 p2)
